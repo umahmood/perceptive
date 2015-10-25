@@ -11,6 +11,7 @@ files, in a way that standard and cryptographic hashes generally fail.
 The following perceptual hash algorithms are implemented:
 
 - Average Hash (Ahash) - Fast but generates a huge number of false positives.
+
 - Difference Hash (Dhash) - Fast and very few false positives.
 
 Below are some examples on how to use the library:
