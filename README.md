@@ -24,16 +24,16 @@ give you a sense of similarity between files.
 Perceptual hash algorithms tend to return a distance score. When comparing the 
 two identical images below, we would receive a distance of 0:
 
-<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/rainbow_flowers.jpg" with="310" height="300"/>
-<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/rainbow_flowers.jpg" with="310" height="300"/>
+<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/rainbow_flowers.jpg" width="310" height="300"/>
+<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/rainbow_flowers.jpg" width="310" height="300"/>
 
 A distance of zero means that the images are **likely** the same.
 
 When comparing the two similar images below we would receive a distance between 
 1-10 (depending on the hashing technique used):
 
-<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/toy_story_1.jpg" width="440" height="290"/>
-<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/toy_story_2.jpg" width="440" height="290"/>
+<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/toy_story_1.jpg" />
+<img src="https://github.com/umahmood/perceptive/blob/master/perceptive_test/test_images/toy_story_2.jpg" />
 
 A distance between 1-10 indicates the images are **likely a variation** of each 
 other.
