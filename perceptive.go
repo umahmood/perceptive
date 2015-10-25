@@ -132,7 +132,9 @@ func HammingDistance(x, y uint64) int {
 // used. If perceptual hash type is Average or Difference:
 //
 // - A distance of 0 indicates the same hash and likely a similar image.
+//
 // - A distance between 1 and 10 the image is potentially a variation.
+//
 // - A distance greater than 10 the image is likely a different image.
 func CompareImages(img1, img2 image.Image, hash PerceptualHash) (int, error) {
 	var a uint64
