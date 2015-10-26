@@ -35,6 +35,11 @@ func resize(img image.Image, width, height int) image.Image {
 	return imaging.Resize(img, width, height, imaging.Lanczos)
 }
 
+// sumPixels sums the values of three 1 byte values
+func sumPixels(r, g, b uint8) uint64 {
+	return uint64(r) + uint64(g) + uint64(b)
+}
+
 // Ahash implements the average hash algorithm.
 func Ahash(img image.Image) (uint64, error) {
 	if img == nil {
@@ -47,11 +52,11 @@ func Ahash(img image.Image) (uint64, error) {
 	pImg = resize(pImg, hashSize, hashSize)
 
 	// calc. average of the colors.
-	var total int
+	var total uint64
 	for row := range iter.N(hashSize) {
 		for col := range iter.N(hashSize) {
 			pixelVal := pImg.At(col, row).(color.NRGBA)
-			total = total + int(pixelVal.R+pixelVal.G+pixelVal.B)
+			total = total + sumPixels(pixelVal.R, pixelVal.G, pixelVal.B)
 		}
 	}
 
@@ -63,7 +68,7 @@ func Ahash(img image.Image) (uint64, error) {
 	for row := range iter.N(hashSize) {
 		for col := range iter.N(hashSize) {
 			pixelVal := pImg.At(col, row).(color.NRGBA)
-			sum := int(pixelVal.R + pixelVal.G + pixelVal.B)
+			sum := sumPixels(pixelVal.R, pixelVal.G, pixelVal.B)
 			if sum > avg {
 				hash |= (1 << pos)
 			}
@@ -88,10 +93,8 @@ func Dhash(img image.Image) (uint64, error) {
 	// comparePixels compares the values of two pixels, returns true if px1 is
 	// greater than px2.
 	comparePixels := func(px1, px2 color.NRGBA) bool {
-		var x uint8
-		var y uint8
-		x = px1.R + px1.G + px1.B
-		y = px2.R + px2.G + px2.B
+		x := sumPixels(px1.R, px1.G, px1.B)
+		y := sumPixels(px2.R, px2.G, px2.B)
 		if x > y {
 			return true
 		}
