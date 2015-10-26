@@ -34,12 +34,12 @@ var testsAverage = []struct {
 	{ // test: similar images
 		imgA: openImage("lena.jpg"),
 		imgB: openImage("lena_pink.jpg"),
-		dist: 9,
+		dist: 8,
 	},
 	{ // test: different images
 		imgA: openImage("lena.jpg"),
 		imgB: openImage("rainbow_flowers.jpg"),
-		dist: 23,
+		dist: 27,
 	},
 }
 
@@ -56,7 +56,7 @@ var testsDifference = []struct {
 	{ // test: similar images
 		imgA: openImage("toy_story_1.jpg"),
 		imgB: openImage("toy_story_2.jpg"),
-		dist: 2,
+		dist: 0,
 	},
 	{ // test: different images
 		imgA: openImage("lena.jpg"),
@@ -94,7 +94,7 @@ func TestCompareImagesWithDifferenceHash(t *testing.T) {
 func TestAhash(t *testing.T) {
 	img := openImage("rainbow_flowers.jpg")
 
-	var want uint64 = 6322853429254619635
+	var want uint64 = 4069139135820476416
 
 	got, err := perceptive.Ahash(img)
 
@@ -110,7 +110,7 @@ func TestAhash(t *testing.T) {
 func TestDhash(t *testing.T) {
 	img := openImage("rainbow_flowers.jpg")
 
-	var want uint64 = 13280149282866979154
+	var want uint64 = 17352528693468127320
 
 	got, err := perceptive.Dhash(img)
 
@@ -147,6 +147,11 @@ var testsHamming = []struct {
 		a:    42,
 		b:    42,
 		dist: 0,
+	},
+	{
+		a:    13280149282866979154,
+		b:    17352528693468127320,
+		dist: 18,
 	},
 }
 
